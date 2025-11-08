@@ -3,7 +3,7 @@ const app=a()
 const apiRouter = require("./server/index.js");
 const puerto=3001
 
-
+app.use(a.json())
 
 app.get('/',(req,res)=>{
     res.send("js es una basura")
