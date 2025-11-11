@@ -1,34 +1,26 @@
 const a=require('express')
 const productService=require('../services/productService')
-// const fake=require('faker')
+const validar=require('../middleware/validator')
+const {obj,getProductSchema}=require('../schema/schema')
 
 const router=a.Router()
 
-router.get('/',(req,res)=>{
-    // const v=[]
-    // const {size}=req.query
-    // const limit = size || 5
-    // for(let index=1;index<limit;index++){
-    //     v.push({
-    //         name:fake.commerce.productName(),
-    //         price:parseInt(fake.commerce.price(),10),
-    //         image: fake.image.imageUrl()
-    //     })
-    // }
-
-    // res.json(v)
-    const response=productService.getAllProduct(req,res)
-    res.json(response)
+router.get('/',async (req,res,next)=>{
+    
+    try {
+        const response=await productService.getAllProduct(req,res)
+        res.json(response)
+    } catch (error) {
+     next(error)   
+    }
+    
+    
 })
 
-router.post('/enviar',(req,res)=>{
-    const bod=req.body
-    
-    res.json({
-        estado:"ok",
-        cuerpo: bod
-    })
-    console.log("post hecho",bod)
+
+router.post('/enviar',validar(obj,'body'),async (req,res,next)=>{    
+    const enviado=await productService.creater(req,res)
+    res.json(enviado)
 })
 
 module.exports=router
