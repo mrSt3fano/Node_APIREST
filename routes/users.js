@@ -1,4 +1,5 @@
 const a=require('express')
+const obt=require('../services/userService')
 const router=a.Router();
 
 router.get('/',(req,res)=>{
@@ -11,6 +12,17 @@ router.get('/',(req,res)=>{
     }
     else{res.send('sin parametros')}
     
+})
+
+router.get('/usarsequelize',async (req,res,next)=>{
+    try {
+        const response = await obt.obetenerUsuarios(req,res)
+    return res.send({response})
+    } catch (error) {
+        next(error)
+    }
+    
+
 })
 
 module.exports=router

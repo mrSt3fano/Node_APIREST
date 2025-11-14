@@ -1,21 +1,11 @@
 const fake=require('faker')
+const pol=require('../libs/postgre')
 
-const getAllProduct = (req,res)=>{
+const getAllProduct = async (req,res)=>{
     // const nose= lolsaf()
     try {
-    
-    const v=[]
-    const {size}=req.query
-    const limit = size || 5
-    for(let index=0;index<limit;index++){
-        v.push({
-            name:fake.commerce.productName(),
-            price:parseInt(fake.commerce.price(),10),
-            image: fake.image.imageUrl()
-        })
-    }
-
-    res.json(v)
+        const response = await pol.query('SELECT * FROM usuario')
+        return response.rows
     } catch (error) {
         console.log(error)
     }

@@ -9,7 +9,7 @@ router.get('/',async (req,res,next)=>{
     
     try {
         const response=await productService.getAllProduct(req,res)
-        res.json(response)
+        return res.send({response})
     } catch (error) {
      next(error)   
     }
