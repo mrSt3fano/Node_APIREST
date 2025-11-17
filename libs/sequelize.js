@@ -1,5 +1,7 @@
 const {config}=require('../config/config')
 const {Sequelize}=require('sequelize')
+const aea=require('../db/index')
+const {User:modeloimportado}=require('../db/userModels')
 
 const user=encodeURIComponent(config.dbUSer)
 const password=encodeURIComponent(config.dbPassword)
@@ -9,5 +11,8 @@ const sequelize = new Sequelize(uri,{
     dialect: 'postgres',
     logging: true
 })
+
+aea.subirTablas(modeloimportado,sequelize)
+
 
 module.exports=sequelize
