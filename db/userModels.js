@@ -1,5 +1,5 @@
 const {Model, DataTypes, Sequelize} = require('sequelize')
-const USER_TABLE='tablademrd'
+const USER_TABLE='tablaConMigrations'
 
 const UserSchema={
     id:{
@@ -25,6 +25,12 @@ const UserSchema={
         field: 'created_at',
         defaultValue: false
     },
+
+    role:{
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: 'cliente'
+    },
     
     time:{
         type: DataTypes.DATE,
@@ -35,7 +41,9 @@ const UserSchema={
 
 class User extends Model{
     
-    static asociado(){}   
+    static asociado(models){
+        this.hasOne(models,{foreignKey:'UserID'})
+    }   
 
     static config(sequelize){
             return{

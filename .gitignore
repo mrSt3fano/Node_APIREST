@@ -221,3 +221,4 @@ postgres-data
 docker-compose.yml
 .env
 pgadmin-data
+.sequelizerc

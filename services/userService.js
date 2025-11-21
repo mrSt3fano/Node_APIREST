@@ -16,7 +16,7 @@ const crearTabla = async (req,res)=>{
     console.log('------iniciando-----')
     try {
         console.log('<--------------')        
-        sequelize.sync()
+        sequelize.sync()//en cambio de esto se usa migraciones
         return {body}
     } catch (error) {
         console.log('un error ha ocurrido',error)

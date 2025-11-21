@@ -1,5 +1,7 @@
 const routerp=require('../routes/products.js')
 const routeru=require('../routes/users.js')
+const routerc=require('../routes/clientes.js')
+
 const a=require('express')
 
 function apiRouter(aea){
@@ -7,6 +9,7 @@ function apiRouter(aea){
     aea.use('/api/v1',router)
     router.use('/products',routerp)
     router.use('/users',routeru)
+    router.use('/clientes',routerc)
 }
 
 
