@@ -6,7 +6,8 @@ const {cliente}=require('../models/cliente_model')
 
 const user=encodeURIComponent(config.dbUSer)
 const password=encodeURIComponent(config.dbPassword)
-const uri=`postgres://${user}:${password}@${config.dbHost}:${config.dbPort}/${config.dbName}`
+// const uri=`postgres://${user}:${password}@${config.dbHost}:${config.dbPort}/${config.dbName}`
+const uri=`postgresql://postgres:teDeFFrCnCEMxEOTKtIYpHISYvTsWdQg@shortline.proxy.rlwy.net:57359/railway`
 
 const sequelize = new Sequelize(uri,{
     dialect: 'postgres',
